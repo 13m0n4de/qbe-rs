@@ -11,6 +11,21 @@ All notable changes to this project will be documented in this file.
   [#9](https://github.com/garritfra/qbe-rs/issues/9)
   ([#60](https://github.com/garritfra/qbe-rs/pull/60)).
 
+### Changed
+
+- BREAKING: `Instr::Call` now takes `Value` as the callee instead of `String`, enabling indirect calls via function pointer temporaries
+
+### Migration guide
+
+Replace bare name strings with `Value::Global`:
+
+```rust
+// Before
+Instr::Call("printf".to_string(), args, None)
+// After
+Instr::Call(Value::Global("printf".to_string()), args, None)
+```
+
 ## [4.0.0] - 2026-03-23
 
 ### Changed
