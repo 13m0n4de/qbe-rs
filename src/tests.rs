@@ -391,7 +391,7 @@ fn add_function_to_module() {
 #[test]
 fn variadic_call() {
     let instr = Instr::Call(
-        "printf".into(),
+        Value::Global("printf".into()),
         vec![
             (Type::Long, Value::Global("fmt".into())),
             (Type::Word, Value::Const(0)),
@@ -882,7 +882,7 @@ fn assign_instr_aggregate_type_coercion() {
     block.assign_instr(
         Value::Temporary("result".into()),
         Type::aggregate(&typedef),
-        Instr::Call("new_person".into(), vec![], None),
+        Instr::Call(Value::Global("new_person".into()), vec![], None),
     );
 
     let formatted = format!("{block}");
