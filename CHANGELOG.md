@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
   [#9](https://github.com/garritfra/qbe-rs/issues/9)
   ([#60](https://github.com/garritfra/qbe-rs/pull/60)).
 
+### Fixed
+
+- BREAKING: `DataItem::Zero` in `DataDef` now emits `z N` without a type prefix
+
 ## [4.0.0] - 2026-03-23
 
 ### Changed
