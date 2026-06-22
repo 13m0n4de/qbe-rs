@@ -754,7 +754,10 @@ impl fmt::Display for DataDef {
             "{{ {} }}",
             self.items
                 .iter()
-                .map(|(ty, item)| format!("{ty} {item}"))
+                .map(|(ty, item)| match item {
+                    DataItem::Zero(_) => format!("{item}"),
+                    _ => format!("{ty} {item}"),
+                })
                 .collect::<Vec<String>>()
                 .join(", ")
         )

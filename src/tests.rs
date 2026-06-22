@@ -785,7 +785,7 @@ fn zero_initialized_data() {
         align: None,
         items: vec![(Type::Byte, DataItem::Zero(1000))],
     };
-    assert_eq!(format!("{data_def}"), "data $zero_array = { b z 1000 }");
+    assert_eq!(format!("{data_def}"), "data $zero_array = { z 1000 }");
 
     // Test mixed with other items
     let data_def = DataDef {
@@ -800,7 +800,7 @@ fn zero_initialized_data() {
     };
     assert_eq!(
         format!("{data_def}"),
-        "data $mixed_data = { w 1, b z 10, w 2 }"
+        "data $mixed_data = { w 1, z 10, w 2 }"
     );
 }
 
