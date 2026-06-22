@@ -212,7 +212,7 @@ pub enum Instr {
     /// Unconditionally jumps to a label
     Jmp(String),
     /// Calls a function
-    Call(String, Vec<(Type, Value)>, Option<u64>),
+    Call(Value, Vec<(Type, Value)>, Option<u64>),
     /// Allocates a 4-byte aligned area on the stack
     Alloc4(u32),
     /// Allocates a 8-byte aligned area on the stack
@@ -389,7 +389,7 @@ impl fmt::Display for Instr {
                     args_fmt.insert(i as usize, "...".to_string());
                 }
 
-                write!(f, "call ${}({})", name, args_fmt.join(", "),)
+                write!(f, "call {}({})", name, args_fmt.join(", "),)
             }
             Self::Alloc4(size) => write!(f, "alloc4 {size}"),
             Self::Alloc8(size) => write!(f, "alloc8 {size}"),
@@ -1312,7 +1312,7 @@ impl fmt::Display for Linkage {
 ///     Value::Temporary("r".to_string()),
 ///     Type::Word,
 ///     Instr::Call(
-///         "printf".to_string(),
+///         Value::Global("printf".to_string()),
 ///         vec![(Type::Long, Value::Global("hello".to_string()))],
 ///         None,
 ///     ),
